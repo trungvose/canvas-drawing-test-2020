@@ -3,14 +3,8 @@ import { Canvas } from '../core/canvas';
 
 export abstract class Shape {
   abstract type: ShapeType;
-
-  get x() {
-    return this.x1 - 1;
-  }
-
-  get y() {
-    return this.y1 - 1;
-  }
+  startX: number;
+  startY: number;
 
   constructor(
     public x1: number,
@@ -18,14 +12,12 @@ export abstract class Shape {
     public x2: number,
     public y2: number,
     public label: string
-  ) {}
+  ) {
+    this.startX = Math.min(this.x1, this.x2) - 1;
+    this.startY = Math.min(this.y1, this.y2) - 1;
+  }
 
   abstract isValid(canvasWidth: number, canvasHeight: number): boolean;
-
-  protected abstract getPositionOnCanvas(
-    canvasWidth: number,
-    canvasHeight: number
-  ): number[];
 
   protected isInsideCanvas(canvasWidth: number, canvasHeight: number) {
     return (
