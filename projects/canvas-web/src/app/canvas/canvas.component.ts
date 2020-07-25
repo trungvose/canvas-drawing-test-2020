@@ -7,14 +7,21 @@ import { CanvasCore, Line, Rectangle, BucketFill } from 'canvas-core';
   styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent implements OnInit {
+  core: CanvasCore;
   constructor() {}
 
   ngOnInit(): void {
-    var canvas = new CanvasCore(20, 4);
-    canvas.addShape(new Line(1, 2, 6, 2));
-    canvas.addShape(new Line(6, 3, 6, 4));
-    canvas.addShape(new Rectangle(14, 1, 18, 3));
-    canvas.addBucket(new BucketFill(15, 2));
-    canvas.addBucket(new BucketFill(1, 3));
+    this.core = new CanvasCore(20, 4);
+    this.core.addShape(new Line(1, 2, 6, 2));
+    this.core.addShape(new Line(6, 3, 6, 4));
+    this.core.addShape(new Rectangle(14, 1, 18, 3));
+    this.core.addBucket(new BucketFill(15, 2));
+    this.core.addBucket(new BucketFill(1, 3));
   }
+
+  createCanvas() {}
+
+  addShape() {}
+
+  addBucket() {}
 }

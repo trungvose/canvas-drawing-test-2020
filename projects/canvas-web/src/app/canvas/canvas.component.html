@@ -1,1 +1,50 @@
-<p>canvas works!</p>
+<h2>Canvas Drawing - Web version</h2>
+<div nz-row>
+    <div nz-col
+         nzSpan="12">
+        <nz-table #basicTable
+                  [nzData]="core?.shapes"
+                  [nzShowPagination]="false"
+                  [nzNoResult]="emptyShapeTmpl">
+            <thead>
+                <tr>
+                    <th>Shape</th>
+                    <th>X1</th>
+                    <th>Y1</th>
+                    <th>X2</th>
+                    <th>Y2</th>
+                    <th>Label</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let shape of basicTable.data">
+                    <td>{{ shape.type }}</td>
+                    <td>{{ shape.x1 }}</td>
+                    <td>{{ shape.y1 }}</td>
+                    <td>{{ shape.x2 }}</td>
+                    <td>{{ shape.y2 }}</td>
+                    <td>{{ shape.label }}</td>
+                </tr>
+                <tr *ngIf="basicTable.data.length">
+                    <td colspan="6">
+                        <button nz-button
+                                nzType="primary">
+                            Add Shape
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+    <div nz-col
+         nzSpan="12">
+        <app-canvas-board [canvas]="core.canvas"></app-canvas-board>
+    </div>
+</div>
+<ng-template #emptyShapeTmpl>
+    No shape added.
+    <button nz-button
+            nzType="primary">
+        Add Shape
+    </button>
+</ng-template>

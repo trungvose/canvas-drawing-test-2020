@@ -1,0 +1,20 @@
+$light-gray: #f0f0f0;
+
+.canvas-board {
+  border: 1px solid $light-gray;
+}
+
+.canvas-row {
+  display: flex;
+
+  .canvas-block {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    border: 1px solid $light-gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}

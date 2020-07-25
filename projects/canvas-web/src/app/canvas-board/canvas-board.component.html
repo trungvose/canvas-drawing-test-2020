@@ -1,0 +1,11 @@
+<div class="canvas-board">
+    <div class="canvas-row"
+         *ngFor='let row of canvas; let i = index'>
+        <div class="canvas-block"
+             *ngFor='let col of row; let j = index'
+             nz-tooltip
+             [nzTooltipTitle]="getBlockTooltip(j, i)">
+             {{ col }}
+        </div>
+    </div>
+</div>
