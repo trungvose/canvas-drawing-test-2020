@@ -3,8 +3,6 @@ import { Canvas } from '../core/canvas';
 
 export abstract class Shape {
   abstract type: ShapeType;
-  startX: number;
-  startY: number;
 
   constructor(
     public x1: number,
@@ -13,20 +11,19 @@ export abstract class Shape {
     public y2: number,
     public label: string
   ) {
-    this.startX = Math.min(this.x1, this.x2) - 1;
-    this.startY = Math.min(this.y1, this.y2) - 1;
+    
   }
-
-  abstract isValid(canvasWidth: number, canvasHeight: number): boolean;
 
   protected isInsideCanvas(canvasWidth: number, canvasHeight: number) {
     return (
-      CanvasUtil.isValid(this.x1, canvasWidth) &&
-      CanvasUtil.isValid(this.x2, canvasWidth) &&
-      CanvasUtil.isValid(this.y1, canvasHeight) &&
-      CanvasUtil.isValid(this.y2, canvasHeight)
+      CanvasUtil.isInside(this.x1, canvasWidth) &&
+      CanvasUtil.isInside(this.x2, canvasWidth) &&
+      CanvasUtil.isInside(this.y1, canvasHeight) &&
+      CanvasUtil.isInside(this.y2, canvasHeight)
     );
   }
+
+  abstract isValid(canvasWidth: number, canvasHeight: number): boolean;
 
   abstract drawToCanvas(
     canvas: Canvas,

@@ -1,8 +1,8 @@
 import { Canvas } from '../core/canvas';
 
 export class CanvasUtil {
-  static isValid(coordinate: number, axisLength: number) {
-    return coordinate >= 0 && coordinate <= axisLength;
+  static isInside(coordinate: number, axisLength: number) {
+    return coordinate >= 1 && coordinate <= axisLength;
   }
 
   static getEmptyRow(width: number) {

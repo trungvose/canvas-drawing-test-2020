@@ -5,10 +5,14 @@ export class Line extends Shape {
   type: ShapeType;
   direction: LineDirection;
   length: number;
+  startX: number;
+  startY: number;
 
   constructor(x1: number, y1: number, x2: number, y2: number, label = 'x') {
     super(x1, y1, x2, y2, label);
     this.type = ShapeType.Line;
+    this.startX = Math.min(this.x1, this.x2);
+    this.startY = Math.min(this.y1, this.y2);
     this.setDirection();
     this.setLength();
   }
@@ -28,13 +32,16 @@ export class Line extends Shape {
     if (!this.isValid(canvasWidth, canvasHeight)) {
       return;
     }
+    let arrIdxRow = this.startY - 1;
+    let arrIdxCol = this.startX - 1;
+
     if (this.direction === LineDirection.Horizontal) {
       for (let i = 0; i < this.length; i++) {
-        canvas[this.startY][this.startX + i] = this.label;
+        canvas[arrIdxRow][arrIdxCol + i] = this.label;
       }
     } else if (this.direction === LineDirection.Vertical) {
       for (let i = 0; i < this.length; i++) {
-        canvas[this.startY + i][this.startX] = this.label;
+        canvas[arrIdxRow + i][arrIdxCol] = this.label;
       }
     }
   }

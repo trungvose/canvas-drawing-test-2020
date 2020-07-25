@@ -4,6 +4,8 @@
 
 export * from './lib/shape/shape';
 export * from './lib/shape/line';
+export * from './lib/shape/rectangle';
+export * from './lib/bucket/bucket-fill';
 
 export * from './lib/core/canvas';
 export * from './lib/core/canvas-core';
