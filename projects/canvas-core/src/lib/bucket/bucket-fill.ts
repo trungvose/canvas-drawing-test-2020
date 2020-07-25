@@ -1,5 +1,6 @@
 import { CanvasUtil } from '../util/canvas';
 import { Canvas } from '../core/canvas';
+import { Point } from './point';
 
 export class BucketFill {
   constructor(public x: number, public y: number, public color: string = 'o') {}
@@ -62,6 +63,4 @@ export class BucketFill {
   }
 }
 
-class Point {
-  constructor(public x: number, public y: number) {}
-}
+

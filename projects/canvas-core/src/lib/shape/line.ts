@@ -28,7 +28,7 @@ export class Line extends Shape {
     canvas: Canvas,
     canvasWidth: number,
     canvasHeight: number
-  ): void {
+  ) {
     if (!this.isValid(canvasWidth, canvasHeight)) {
       return;
     }

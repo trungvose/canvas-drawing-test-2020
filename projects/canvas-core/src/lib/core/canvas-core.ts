@@ -4,9 +4,9 @@ import { Canvas } from './canvas';
 import { BucketFill } from '../bucket/bucket-fill';
 
 export class CanvasCore {
+  canvas: Canvas;
   shapes: Shape[];
   buckets: BucketFill[];
-  canvas: Canvas;
 
   constructor(public canvasWidth: number, public canvasHeight: number) {
     this.shapes = [];
@@ -17,13 +17,11 @@ export class CanvasCore {
   addShape(shape: Shape) {
     this.shapes.push(shape);
     this._drawShape(shape);
-    console.table(this.canvas);
   }
 
   addBucket(bucket: BucketFill) {
     this.buckets.push(bucket);
     this._fillBucket(bucket);
-    console.table(this.canvas);
   }
 
   redraw() {
