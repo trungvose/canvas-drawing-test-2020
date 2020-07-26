@@ -10,6 +10,10 @@ nz-form-control {
   }
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 ::ng-deep tr.ant-table-placeholder td {
   border-bottom: 0;
 }

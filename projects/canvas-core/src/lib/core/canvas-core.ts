@@ -2,6 +2,7 @@ import { Shape } from '../shape/shape';
 import { CanvasUtil } from '../util/canvas';
 import { Canvas } from './canvas';
 import { BucketFill } from '../bucket/bucket-fill';
+import { BlockColor } from '../util/color';
 
 export class CanvasCore {
   canvas: Canvas;
@@ -38,6 +39,18 @@ export class CanvasCore {
   deleteBucket(bucketIdx: number) {
     this.buckets = this.buckets.filter((bucket, i) => i !== bucketIdx);
     this.redraw();
+  }
+
+  setShapeBackgroundColor(
+    shape: Shape,
+    background: BlockColor,
+    color: BlockColor
+  ) {
+    shape.positionsOnCanvas.forEach(({ x, y }) => {
+      let block = this.canvas[x][y];
+      block.backgroundColor = background;
+      block.color = color;
+    });
   }
 
   redraw() {

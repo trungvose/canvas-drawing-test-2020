@@ -44,7 +44,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let shape of core.shapes; let idx = index"
-                    (mouseover)="mouseOverShape(shape)">
+                    class="cursor-pointer"
+                    (mouseover)="mouseOverShape(shape)"
+                    (mouseout)="mouseOutShape(shape)">
                     <td>
                         <nz-form-item>
                             <nz-form-control>

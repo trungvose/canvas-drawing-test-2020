@@ -1,11 +1,12 @@
-import { BlockUtil } from '../util/block';
+import { BlockColor } from '../util/color';
 
 export abstract class Block {
   abstract type: BlockType;
 
   constructor(
     public label: string,
-    public backgroundColor = BlockUtil.FilledColor
+    public backgroundColor = BlockColor.White,
+    public color = BlockColor.Black
   ) {}
 
   get isEmpty() {

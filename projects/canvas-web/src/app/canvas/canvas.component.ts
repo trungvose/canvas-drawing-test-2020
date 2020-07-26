@@ -11,6 +11,7 @@ import { CanvasSize } from '../interface/canvas-size';
 import { Subject } from 'rxjs';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { debounceTime } from 'rxjs/operators';
+import { BlockColor } from 'canvas-core';
 
 @UntilDestroy()
 @Component({
@@ -76,7 +77,11 @@ export class CanvasComponent implements OnInit {
     this.onFormInputUpdated$.next();
   }
 
-  mouseOverShape(shape: Shape){
-    
+  mouseOverShape(shape: Shape) {
+    this.core.setShapeBackgroundColor(shape, BlockColor.CSColor, BlockColor.White);
+  }
+
+  mouseOutShape(shape: Shape) {
+    this.core.setShapeBackgroundColor(shape, BlockColor.White, BlockColor.Black);
   }
 }

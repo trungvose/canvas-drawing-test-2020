@@ -14,7 +14,9 @@
         <div class="canvas-block"
              *ngFor='let block of row; let j = index'
              nz-tooltip
-             [nzTooltipTitle]="getBlockTooltip(j, i)">
+             [nzTooltipTitle]="getBlockTooltip(j, i)"
+             [style.background]="block.backgroundColor"
+             [style.color]="block.color">
             {{ block.label }}
         </div>
     </div>
