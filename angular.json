@@ -36,9 +36,7 @@
               "projects/canvas-core/tsconfig.lib.json",
               "projects/canvas-core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -47,7 +45,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "skipTests": true
         }
       },
       "root": "projects/canvas-web",
@@ -67,9 +66,7 @@
               "projects/canvas-web/src/favicon.ico",
               "projects/canvas-web/src/assets"
             ],
-            "styles": [
-              "projects/canvas-web/src/styles.scss"
-            ],
+            "styles": ["projects/canvas-web/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -131,9 +128,7 @@
               "projects/canvas-web/src/favicon.ico",
               "projects/canvas-web/src/assets"
             ],
-            "styles": [
-              "projects/canvas-web/src/styles.scss"
-            ],
+            "styles": ["projects/canvas-web/src/styles.scss"],
             "scripts": []
           }
         },
@@ -145,9 +140,7 @@
               "projects/canvas-web/tsconfig.spec.json",
               "projects/canvas-web/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -163,6 +156,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "canvas-core"
 }

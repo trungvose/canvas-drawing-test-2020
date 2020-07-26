@@ -14,6 +14,12 @@ export class CanvasCore {
     this.canvas = CanvasUtil.getEmptyCanvas(canvasWidth, canvasHeight);
   }
 
+  updateSize(width: number, height: number) {
+    this.canvasWidth = width;
+    this.canvasHeight = height;
+    this.redraw();
+  }
+
   addShape(shape: Shape) {
     this.shapes.push(shape);
     this._drawShape(shape);

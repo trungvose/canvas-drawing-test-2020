@@ -10,6 +10,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { CanvasBoardComponent } from './components/canvas-board/canvas-board.component';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { CanvasSizeComponent } from './components/canvas-size/canvas-size.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,11 +24,14 @@ import { CanvasSizeComponent } from './components/canvas-size/canvas-size.compon
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     NzLayoutModule,
     NzGridModule,
     NzTableModule,
     NzButtonModule,
     NzToolTipModule,
+    NzFormModule,
+    NzInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

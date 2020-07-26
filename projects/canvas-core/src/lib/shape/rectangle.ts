@@ -16,10 +16,34 @@ export class Rectangle extends Shape {
   }
 
   setLines() {
-    let topHorizontalLine = new Line(this.x1, this.y1, this.x1, this.y2);
-    let bottomHorizontalLine = new Line(this.x2, this.y1, this.x2, this.y2);
-    let leftVerticalLine = new Line(this.x1, this.y1, this.x2, this.y1);
-    let rightVerticalLine = new Line(this.x1, this.y2, this.x2, this.y2);
+    let topHorizontalLine = new Line(
+      this.x1,
+      this.y1,
+      this.x1,
+      this.y2,
+      this.label
+    );
+    let bottomHorizontalLine = new Line(
+      this.x2,
+      this.y1,
+      this.x2,
+      this.y2,
+      this.label
+    );
+    let leftVerticalLine = new Line(
+      this.x1,
+      this.y1,
+      this.x2,
+      this.y1,
+      this.label
+    );
+    let rightVerticalLine = new Line(
+      this.x1,
+      this.y2,
+      this.x2,
+      this.y2,
+      this.label
+    );
 
     this.lines = [
       topHorizontalLine,

@@ -1,1 +1,27 @@
-<p>canvas-size works!</p>
+<form nz-form
+      [formGroup]='canvasForm'>
+    <nz-form-item>
+        <nz-form-label nzRequired
+                       nzFor='CanvasWidth'>
+            Width
+        </nz-form-label>
+        <nz-form-control nzErrorTip="Canvas width is required">
+            <input formControlName="width"
+                   nz-input
+                   type='number'
+                   id='CanvasWidth' />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzRequired
+                       nzFor='CanvasWidth'>
+            Height
+        </nz-form-label>
+        <nz-form-control nzErrorTip="Canvas height is required">
+            <input formControlName="height"
+                   nz-input
+                   type='number'
+                   id='CanvasWidth' />
+        </nz-form-control>
+    </nz-form-item>
+</form>

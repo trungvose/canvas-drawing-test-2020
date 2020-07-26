@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CanvasCore, Line, Rectangle, BucketFill } from 'canvas-core';
+import { CanvasSize } from '../interface/canvas-size';
 
 @Component({
   selector: 'app-canvas',
@@ -16,6 +17,10 @@ export class CanvasComponent implements OnInit {
     this.core.addShape(new Line(6, 3, 6, 4));
     this.core.addShape(new Rectangle(14, 1, 18, 3));
     this.core.addBucket(new BucketFill(10, 2));
+  }
+
+  canvasSizeChange({ width, height }: CanvasSize) {
+    this.core.updateSize(width, height);
   }
 
   createCanvas() {}

@@ -1,9 +1,11 @@
 <h1>Canvas Drawing - Frontend</h1>
-<div nz-row>
+<div nz-row
+     [nzGutter]="[12]">
     <div nz-col
-         nzSpan="12">
+         nzLg="24"
+         nzXl="12">
         <h2>Shapes</h2>
-        <nz-table #basicTable
+        <nz-table #shapeTable
                   [nzData]="core?.shapes"
                   [nzShowPagination]="false"
                   [nzNoResult]="emptyShapeTmpl">
@@ -18,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let shape of basicTable.data">
+                <tr *ngFor="let shape of shapeTable.data">
                     <td>{{ shape.type }}</td>
                     <td>{{ shape.x1 }}</td>
                     <td>{{ shape.y1 }}</td>
@@ -26,7 +28,7 @@
                     <td>{{ shape.y2 }}</td>
                     <td>{{ shape.label }}</td>
                 </tr>
-                <tr *ngIf="basicTable.data.length">
+                <tr *ngIf="shapeTable.data.length">
                     <td colspan="6">
                         <button nz-button
                                 nzType="primary">
@@ -38,9 +40,10 @@
         </nz-table>
     </div>
     <div nz-col
-         nzSpan="12">
+         nzLg="24"
+         nzXl="12">
         <h2>Canvas</h2>
-    
+        <app-canvas-size [width]="core.canvasWidth" [height]="core.canvasHeight" (sizeChange)="canvasSizeChange($event)"></app-canvas-size>
         <app-canvas-board [canvas]="core.canvas"></app-canvas-board>
     </div>
 </div>
