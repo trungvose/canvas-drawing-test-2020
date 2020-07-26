@@ -8,6 +8,11 @@ import { Canvas } from 'canvas-core';
 })
 export class CanvasBoardComponent implements OnInit {
   @Input() canvas: Canvas;
+  get canvasHeader() {
+    let length = this.canvas[0]?.length || 0;
+    return Array(length + 1).fill(0);
+  }
+
   constructor() {}
 
   ngOnInit(): void {}
