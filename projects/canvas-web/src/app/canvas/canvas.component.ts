@@ -75,4 +75,8 @@ export class CanvasComponent implements OnInit {
   onFormInputUpdated() {
     this.onFormInputUpdated$.next();
   }
+
+  mouseOverShape(shape: Shape){
+    
+  }
 }

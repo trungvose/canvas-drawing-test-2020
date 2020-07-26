@@ -1,29 +1,38 @@
 <form nz-form
-      [formGroup]='canvasForm'>
+      [formGroup]='canvasForm'
+      nzLayout="inline"
+      class="canvas-size-form">
     <nz-form-item>
-        <nz-form-label nzRequired
-                       nzFor='CanvasWidth'>
+        <nz-form-label nzFor='CanvasWidth'>
             Width
         </nz-form-label>
-        <nz-form-control nzErrorTip="Canvas width is required">
+        <nz-form-control [nzErrorTip]="combineErrorsTmpl">
             <input formControlName="width"
                    nz-input
                    min="0"
+                   tPositiveNumber="50"
+                   tNoSpaces
                    type='number'
                    id='CanvasWidth' />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label nzRequired
-                       nzFor='CanvasHeight'>
+        <nz-form-label nzFor='CanvasHeight'>
             Height
         </nz-form-label>
-        <nz-form-control nzErrorTip="Canvas height is required">
+        <nz-form-control [nzErrorTip]="combineErrorsTmpl">
             <input formControlName="height"
                    nz-input
                    min="0"
+                   tPositiveNumber="50"
                    type='number'
+                   tNoSpaces
                    id='CanvasHeight' />
         </nz-form-control>
     </nz-form-item>
 </form>
+<ng-template #combineErrorsTmpl
+             let-control>
+    <ng-container *ngIf="control.hasError('whitespace')">Required</ng-container>
+    <ng-container *ngIf="control.hasError('nonPositive')">Please enter a value between 0 and 50</ng-container>
+</ng-template>

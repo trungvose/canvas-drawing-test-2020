@@ -49,7 +49,9 @@ export class CanvasSizeComponent implements OnInit, OnChanges {
     this.canvasForm.valueChanges
       .pipe(untilDestroyed(this), debounceTime(200))
       .subscribe((value) => {
-        this.sizeChange.emit(value);
+        if (this.canvasForm.valid) {
+          this.sizeChange.emit(value);
+        }
       });
   }
 

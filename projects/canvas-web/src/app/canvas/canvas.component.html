@@ -3,27 +3,37 @@
      [nzGutter]="[24]">
     <div nz-col
          nzLg="24"
-         nzXl="12">
-        <h2>Shapes/Bucket Fill</h2>
-
-        <div class="table-action">
-            <ng-container [ngTemplateOutlet]="addButtonTmpl"></ng-container>
-            <button *ngIf="!hasNoShapeOrBucket"
-                    nz-popconfirm
-                    nzPopconfirmTitle="Are you sure you want to delete everything?"
-                    (nzOnConfirm)="clearAll()"
-                    class="btn-clear"
-                    nz-button
-                    nzType="secondary">
-                Clear
-            </button>
+         nzXl="8">
+        <div nz-row>
+            <div nz-col
+                 nzLg="12">
+                <h2>
+                    Shapes/Bucket Fill
+                </h2>
+            </div>
+            <div nz-col
+                 nzLg="12">
+                <div class="table-action">
+                    <ng-container [ngTemplateOutlet]="addButtonTmpl"></ng-container>
+                    <button *ngIf="!hasNoShapeOrBucket"
+                            nz-popconfirm
+                            nzPopconfirmTitle="Are you sure you want to delete everything?"
+                            (nzOnConfirm)="clearAll()"
+                            class="btn-clear"
+                            nz-button
+                            nzType="secondary">
+                        Delete All
+                    </button>
+                </div>
+            </div>
         </div>
+
         <nz-table nzSize="small"
                   [nzShowPagination]="false"
                   [nzNoResult]="emptyShapeTmpl">
             <thead>
                 <tr>
-                    <th nzWidth="10%">Item</th>
+                    <th nzWidth="20%">Item</th>
                     <th>X1</th>
                     <th>Y1</th>
                     <th>X2</th>
@@ -33,7 +43,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let shape of core.shapes; let idx = index" (mouseover)="mouseOverShape(shape)">
+                <tr *ngFor="let shape of core.shapes; let idx = index"
+                    (mouseover)="mouseOverShape(shape)">
                     <td>
                         <nz-form-item>
                             <nz-form-control>
@@ -45,12 +56,13 @@
                         <nz-form-item>
                             <nz-form-control [nzErrorTip]="combineErrorsTmpl">
                                 <input type="number"
-                                       tAutofocus
                                        min="0"
+                                       [tPositiveNumber]="core.canvasWidth"
+                                       tAutofocus
+                                       tNoSpaces
                                        nz-input
                                        [(ngModel)]="shape.x1"
-                                       (ngModelChange)="onFormInputUpdated()"
-                                       required />
+                                       (ngModelChange)="onFormInputUpdated()" />
                             </nz-form-control>
                         </nz-form-item>
                     </td>
@@ -59,10 +71,11 @@
                             <nz-form-control [nzErrorTip]="combineErrorsTmpl">
                                 <input type="number"
                                        min="0"
+                                       [tPositiveNumber]="core.canvasHeight"
                                        nz-input
                                        [(ngModel)]="shape.y1"
                                        (ngModelChange)="onFormInputUpdated()"
-                                       required />
+                                       tNoSpaces />
                             </nz-form-control>
                         </nz-form-item>
                     </td>
@@ -71,10 +84,11 @@
                             <nz-form-control [nzErrorTip]="combineErrorsTmpl">
                                 <input type="number"
                                        min="0"
+                                       [tPositiveNumber]="core.canvasWidth"
                                        nz-input
                                        [(ngModel)]="shape.x2"
                                        (ngModelChange)="onFormInputUpdated()"
-                                       required />
+                                       tNoSpaces />
                             </nz-form-control>
                         </nz-form-item>
                     </td>
@@ -83,10 +97,11 @@
                             <nz-form-control [nzErrorTip]="combineErrorsTmpl">
                                 <input type="number"
                                        min="0"
+                                       [tPositiveNumber]="core.canvasHeight"
                                        nz-input
                                        [(ngModel)]="shape.y2"
                                        (ngModelChange)="onFormInputUpdated()"
-                                       required />
+                                       tNoSpaces />
                             </nz-form-control>
                         </nz-form-item>
                     </td>
@@ -98,7 +113,7 @@
                                        maxlength="3"
                                        [(ngModel)]="shape.label"
                                        (ngModelChange)="onFormInputUpdated()"
-                                       required />
+                                       tNoSpaces />
                             </nz-form-control>
                         </nz-form-item>
                     </td>
@@ -126,11 +141,12 @@
                             <nz-form-control [nzErrorTip]="combineErrorsTmpl">
                                 <input type="number"
                                        min="0"
+                                       [tPositiveNumber]="core.canvasWidth"
                                        tAutofocus
                                        nz-input
                                        [(ngModel)]="bucket.x"
                                        (ngModelChange)="onFormInputUpdated()"
-                                       required />
+                                       tNoSpaces />
                             </nz-form-control>
                         </nz-form-item>
                     </td>
@@ -139,16 +155,15 @@
                             <nz-form-control [nzErrorTip]="combineErrorsTmpl">
                                 <input type="number"
                                        min="0"
+                                       [tPositiveNumber]="core.canvasHeight"
                                        nz-input
                                        [(ngModel)]="bucket.y"
                                        (ngModelChange)="onFormInputUpdated()"
-                                       required />
+                                       tNoSpaces />
                             </nz-form-control>
                         </nz-form-item>
                     </td>
-
                     <td colSpan="2">
-
                     </td>
                     <td>
                         <nz-form-item>
@@ -158,7 +173,7 @@
                                        maxlength="3"
                                        [(ngModel)]="bucket.color"
                                        (ngModelChange)="onFormInputUpdated()"
-                                       required />
+                                       tNoSpaces />
                             </nz-form-control>
                         </nz-form-item>
                     </td>
@@ -177,7 +192,7 @@
     </div>
     <div nz-col
          nzLg="24"
-         nzXl="12">
+         nzXl="16">
         <h2>Canvas</h2>
         <app-canvas-size [width]="core.canvasWidth"
                          [height]="core.canvasHeight"
@@ -213,5 +228,5 @@
 
 <ng-template #combineErrorsTmpl
              let-control>
-    <ng-container *ngIf="control.hasError('required')">Required</ng-container>
+    <ng-container *ngIf="control.hasError('whitespace')">Required</ng-container>
 </ng-template>

@@ -22,6 +22,8 @@ import { CanvasComponent } from './canvas/canvas.component';
 import { CanvasBoardComponent } from './components/canvas-board/canvas-board.component';
 import { CanvasSizeComponent } from './components/canvas-size/canvas-size.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { PositiveNumberDirective } from './validators/postive-number/positiveNumberDirective';
+import { NoWhitespaceDirective } from './validators/no-whitespace/no-whitespace.directive';
 
 registerLocaleData(en);
 
@@ -33,6 +35,8 @@ const ICONS: IconDefinition[] = [DownCircleOutline];
     CanvasBoardComponent,
     CanvasSizeComponent,
     AutofocusDirective,
+    NoWhitespaceDirective,
+    PositiveNumberDirective,
   ],
   imports: [
     BrowserModule,
