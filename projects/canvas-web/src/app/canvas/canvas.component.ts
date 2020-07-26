@@ -16,7 +16,7 @@ export class CanvasComponent implements OnInit {
     this.core.addShape(new Line(1, 2, 6, 2));
     this.core.addShape(new Line(6, 3, 6, 4));
     this.core.addShape(new Rectangle(14, 1, 18, 3));
-    this.core.addBucket(new BucketFill(10, 2));
+    this.core.addBucket(new BucketFill(10, 3));
   }
 
   canvasSizeChange({ width, height }: CanvasSize) {

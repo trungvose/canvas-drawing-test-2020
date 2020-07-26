@@ -47,7 +47,7 @@ export class CanvasSizeComponent implements OnInit, OnChanges {
     });
 
     this.canvasForm.valueChanges
-      .pipe(untilDestroyed(this), debounceTime(300))
+      .pipe(untilDestroyed(this), debounceTime(200))
       .subscribe((value) => {
         this.sizeChange.emit(value);
       });
@@ -61,6 +61,6 @@ export class CanvasSizeComponent implements OnInit, OnChanges {
   }
 
   hasValueChange(change: SimpleChange) {
-    return change.previousValue !== change.currentValue;
+    return change?.previousValue !== change?.currentValue;
   }
 }

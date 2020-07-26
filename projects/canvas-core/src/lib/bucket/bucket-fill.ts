@@ -31,7 +31,9 @@ export class BucketFill {
       [1, 1],
     ];
 
-    let queue: Point[] = [new Point(this.x, this.y)];
+    let point = new Point(this.x, this.y);
+    let queue: Point[] = [point];
+
     while (queue.length) {
       let { x, y } = queue.shift();
       canvas[y - 1][x - 1] = this.color;
@@ -39,7 +41,9 @@ export class BucketFill {
       for (let i = 0; i < xyAdjacentCors.length; i++) {
         const newX = x + xyAdjacentCors[i][0];
         const newY = y + xyAdjacentCors[i][1];
+        let isQueueHasPoint = queue.some(point => point.x === newX && point.y === newY);
         if (
+          !isQueueHasPoint &&
           this.isAvailablePoint(newX, newY, canvas, canvasWidth, canvasHeight)
         ) {
           queue.push(new Point(newX, newY));
@@ -62,5 +66,3 @@ export class BucketFill {
     );
   }
 }
-
-
