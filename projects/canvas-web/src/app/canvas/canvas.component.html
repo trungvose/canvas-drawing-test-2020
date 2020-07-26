@@ -9,7 +9,9 @@
         <div class="table-action">
             <ng-container [ngTemplateOutlet]="addButtonTmpl"></ng-container>
             <button *ngIf="!hasNoShapeOrBucket"
-                    (click)="clearAll()"
+                    nz-popconfirm
+                    nzPopconfirmTitle="Are you sure you want to delete everything?"
+                    (nzOnConfirm)="clearAll()"
                     class="btn-clear"
                     nz-button
                     nzType="secondary">
