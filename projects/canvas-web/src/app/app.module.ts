@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
 import { CanvasComponent } from './canvas/canvas.component';
 import { CanvasBoardComponent } from './components/canvas-board/canvas-board.component';
 import { CanvasSizeComponent } from './components/canvas-size/canvas-size.component';
-
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 registerLocaleData(en);
 
@@ -32,6 +32,7 @@ const ICONS: IconDefinition[] = [DownCircleOutline];
     CanvasComponent,
     CanvasBoardComponent,
     CanvasSizeComponent,
+    AutofocusDirective,
   ],
   imports: [
     BrowserModule,

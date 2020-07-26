@@ -45,6 +45,7 @@
                         <nz-form-item>
                             <nz-form-control [nzErrorTip]="combineErrorsTmpl">
                                 <input type="number"
+                                       tAutofocus
                                        min="0"
                                        nz-input
                                        [(ngModel)]="shape.x1"
@@ -125,6 +126,7 @@
                             <nz-form-control [nzErrorTip]="combineErrorsTmpl">
                                 <input type="number"
                                        min="0"
+                                       tAutofocus
                                        nz-input
                                        [(ngModel)]="bucket.x"
                                        (ngModelChange)="onFormInputUpdated()"

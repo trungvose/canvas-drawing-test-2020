@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prestart": "ng build canvas-core",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
