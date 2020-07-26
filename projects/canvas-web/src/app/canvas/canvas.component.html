@@ -4,7 +4,7 @@
     <div nz-col
          nzLg="24"
          nzXl="12">
-        <h2>Shapes</h2>
+        <h2>Shapes/Bucket Fill</h2>
 
         <div class="table-action">
             <ng-container [ngTemplateOutlet]="addButtonTmpl"></ng-container>
@@ -23,7 +23,7 @@
                   [nzNoResult]="emptyShapeTmpl">
             <thead>
                 <tr>
-                    <th>Shape/Bucket</th>
+                    <th nzWidth="10%">Item</th>
                     <th>X1</th>
                     <th>Y1</th>
                     <th>X2</th>
@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let shape of core.shapes; let idx = index">
+                <tr *ngFor="let shape of core.shapes; let idx = index" (mouseover)="mouseOverShape(shape)">
                     <td>
                         <nz-form-item>
                             <nz-form-control>
@@ -117,7 +117,7 @@
                     <td>
                         <nz-form-item>
                             <nz-form-control>
-                                Bucket
+                                Bucket Fill
                             </nz-form-control>
                         </nz-form-item>
                     </td>
@@ -166,7 +166,7 @@
                         <nz-form-item>
                             <nz-form-control>
                                 <a nz-popconfirm
-                                   nzPopconfirmTitle="Are you sure you want to delete this shape?"
+                                   nzPopconfirmTitle="Are you sure you want to delete this bucket fill?"
                                    (nzOnConfirm)="deleteBucket(idx)">Delete</a>
                             </nz-form-control>
                         </nz-form-item>
