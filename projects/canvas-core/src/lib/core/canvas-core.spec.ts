@@ -4,6 +4,7 @@ import { Shape } from '../shape/shape';
 import { Canvas } from './canvas';
 import { Rectangle } from '../shape/rectangle';
 import { BucketFill } from '../bucket/bucket-fill';
+import { Point } from '../point/point';
 
 describe('Canvas Core', () => {
   let canvasCore: CanvasCore;
@@ -35,7 +36,9 @@ describe('Canvas Core', () => {
     expect(line.positionsOnCanvas.length).toEqual(0);
     canvasCore.addShape(line);
     expect(line.positionsOnCanvas.length).toEqual(6);
-    expect(assertCanvasAfterAddingShape(line, canvasCore.canvas)).toEqual(true);
+    expect(
+      assertCanvasAfterDrawing(line.positionsOnCanvas, canvasCore.canvas)
+    ).toEqual(true);
   });
 
   it('should draw a rectangle into the canvas', () => {
@@ -43,20 +46,46 @@ describe('Canvas Core', () => {
     expect(rectangle.positionsOnCanvas.length).toEqual(0);
     canvasCore.addShape(rectangle);
     expect(rectangle.positionsOnCanvas.length).toEqual(16);
-    expect(assertCanvasAfterAddingShape(rectangle, canvasCore.canvas)).toEqual(
-      true
-    );
+    expect(
+      assertCanvasAfterDrawing(rectangle.positionsOnCanvas, canvasCore.canvas)
+    ).toEqual(true);
   });
 
   it('should add a bucket to the buckets array', () => {
-    const bucket = new BucketFill(10, 2);
+    const bucket = new BucketFill(10, 3);
 
     expect(canvasCore.buckets.length).toEqual(0);
     canvasCore.addBucket(bucket);
     expect(canvasCore.buckets.length).toEqual(1);
   });
 
-  it('should add clear the canvas', () => {
+  it('should draw a bucket fill into the canvas', () => {
+    const bucket = new BucketFill(10, 3);
+    expect(bucket.positionsOnCanvas.length).toEqual(0);
+
+    canvasCore.addBucket(bucket);
+    expect(bucket.positionsOnCanvas.length).toEqual(80);
+
+    expect(
+      assertCanvasAfterDrawing(bucket.positionsOnCanvas, canvasCore.canvas)
+    ).toEqual(true);
+  });
+
+  it('should draw a bucket fill into the canvas with mixed shapes', () => {
+    canvasCore.addShape(new Line(1, 2, 6, 2));
+    canvasCore.addShape(new Line(6, 3, 6, 4));
+    canvasCore.addShape(new Rectangle(14, 1, 18, 3));
+    const bucket = new BucketFill(10, 3);
+
+    canvasCore.addBucket(bucket);
+
+    expect(bucket.positionsOnCanvas.length).toEqual(47);
+    expect(
+      assertCanvasAfterDrawing(bucket.positionsOnCanvas, canvasCore.canvas)
+    ).toEqual(true);
+  });
+
+  it('should clear the canvas', () => {
     const bucket = new BucketFill(10, 2);
     canvasCore.addBucket(bucket);
     const line = new Line(1, 2, 6, 2);
@@ -66,10 +95,10 @@ describe('Canvas Core', () => {
     expect(canvasCore.shapes.length).toEqual(0);
   });
 
-  const assertCanvasAfterAddingShape = (
-    shape: Shape,
+  const assertCanvasAfterDrawing = (
+    points: Point[],
     canvas: Canvas
   ): boolean => {
-    return shape.positionsOnCanvas.every(({ x, y }) => canvas[x][y] !== ' ');
+    return points.every(({ x, y }) => canvas[x][y].isFilled);
   };
 });
