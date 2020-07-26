@@ -1,6 +1,7 @@
 import { Shape, ShapeType } from './shape';
 import { Canvas } from '../core/canvas';
 import { Point } from '../point/point';
+import { FilledBlock } from '../block/filled-block';
 
 export class Line extends Shape {
   type: ShapeType;
@@ -41,12 +42,12 @@ export class Line extends Shape {
 
     if (this.direction === LineDirection.Horizontal) {
       for (let i = 0; i < this.length; i++) {
-        canvas[arrIdxRow][arrIdxCol + i] = this.label;
+        canvas[arrIdxRow][arrIdxCol + i] = new FilledBlock(this.label);
         this.positionsOnCanvas.push(new Point(arrIdxRow, arrIdxCol + i));
       }
     } else if (this.direction === LineDirection.Vertical) {
       for (let i = 0; i < this.length; i++) {
-        canvas[arrIdxRow + i][arrIdxCol] = this.label;
+        canvas[arrIdxRow + i][arrIdxCol] = new FilledBlock(this.label);
         this.positionsOnCanvas.push(new Point(arrIdxRow + i, arrIdxCol));
       }
     }

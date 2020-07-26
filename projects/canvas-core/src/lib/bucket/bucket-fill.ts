@@ -1,6 +1,7 @@
 import { CanvasUtil } from '../util/canvas';
 import { Canvas } from '../core/canvas';
 import { Point } from '../point/point';
+import { FilledBlock } from '../block/filled-block';
 
 export class BucketFill {
   constructor(public x: number, public y: number, public color: string = 'o') {}
@@ -36,12 +37,15 @@ export class BucketFill {
 
     while (queue.length) {
       let { x, y } = queue.shift();
-      canvas[y - 1][x - 1] = this.color;
+      
+      canvas[y - 1][x - 1] = new FilledBlock(this.color);
 
       for (let i = 0; i < xyAdjacentCors.length; i++) {
         const newX = x + xyAdjacentCors[i][0];
         const newY = y + xyAdjacentCors[i][1];
-        let isQueueHasPoint = queue.some(point => point.x === newX && point.y === newY);
+        let isQueueHasPoint = queue.some(
+          (point) => point.x === newX && point.y === newY
+        );
         if (
           !isQueueHasPoint &&
           this.isAvailablePoint(newX, newY, canvas, canvasWidth, canvasHeight)
@@ -62,7 +66,7 @@ export class BucketFill {
     return (
       CanvasUtil.isInside(x, canvasWidth) &&
       CanvasUtil.isInside(y, canvasHeight) &&
-      canvas[y - 1][x - 1] === ' '
+      canvas[y - 1][x - 1]?.isEmpty
     );
   }
 }
