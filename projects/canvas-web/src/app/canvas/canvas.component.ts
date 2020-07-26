@@ -5,7 +5,7 @@ import {
   Rectangle,
   BucketFill,
   CanvasUtil,
-  Shape,
+  Point,
 } from 'canvas-core';
 import { CanvasSize } from '../interface/canvas-size';
 import { Subject } from 'rxjs';
@@ -77,11 +77,11 @@ export class CanvasComponent implements OnInit {
     this.onFormInputUpdated$.next();
   }
 
-  mouseOverShape(shape: Shape) {
-    this.core.setShapeBackgroundColor(shape, BlockColor.CSColor, BlockColor.White);
+  mouseOverItem(points: Point[]) {
+    this.core.setCanvasColor(points, BlockColor.CSColor, BlockColor.White);
   }
 
-  mouseOutShape(shape: Shape) {
-    this.core.setShapeBackgroundColor(shape, BlockColor.White, BlockColor.Black);
+  mouseOutItem(points: Point[]) {
+    this.core.setCanvasColor(points, BlockColor.White, BlockColor.Black);
   }
 }

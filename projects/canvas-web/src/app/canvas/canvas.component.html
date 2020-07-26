@@ -45,8 +45,8 @@
             <tbody>
                 <tr *ngFor="let shape of core.shapes; let idx = index"
                     class="cursor-pointer"
-                    (mouseover)="mouseOverShape(shape)"
-                    (mouseout)="mouseOutShape(shape)">
+                    (mouseover)="mouseOverItem(shape.positionsOnCanvas)"
+                    (mouseout)="mouseOutItem(shape.positionsOnCanvas)">
                     <td>
                         <nz-form-item>
                             <nz-form-control>
@@ -130,7 +130,10 @@
 
                     </td>
                 </tr>
-                <tr *ngFor="let bucket of core.buckets; let idx = index">
+                <tr *ngFor="let bucket of core.buckets; let idx = index"
+                    class="cursor-pointer"
+                    (mouseover)="mouseOverItem(bucket.positionsOnCanvas)"
+                    (mouseout)="mouseOutItem(bucket.positionsOnCanvas)">
                     <td>
                         <nz-form-item>
                             <nz-form-control>

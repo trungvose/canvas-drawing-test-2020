@@ -3,6 +3,7 @@ import { CanvasUtil } from '../util/canvas';
 import { Canvas } from './canvas';
 import { BucketFill } from '../bucket/bucket-fill';
 import { BlockColor } from '../util/color';
+import { Point } from '../point/point';
 
 export class CanvasCore {
   canvas: Canvas;
@@ -41,12 +42,12 @@ export class CanvasCore {
     this.redraw();
   }
 
-  setShapeBackgroundColor(
-    shape: Shape,
+  setCanvasColor(
+    points: Point[],
     background: BlockColor,
     color: BlockColor
   ) {
-    shape.positionsOnCanvas.forEach(({ x, y }) => {
+    points.forEach(({ x, y }) => {
       let block = this.canvas[x][y];
       block.backgroundColor = background;
       block.color = color;

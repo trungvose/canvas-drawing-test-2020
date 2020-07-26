@@ -4,7 +4,11 @@ import { Point } from '../point/point';
 import { FilledBlock } from '../block/filled-block';
 
 export class BucketFill {
-  constructor(public x: number, public y: number, public color: string = 'o') {}
+  positionsOnCanvas: Point[];
+
+  constructor(public x: number, public y: number, public color: string = 'o') {
+    this.positionsOnCanvas = [];
+  }
 
   isValid(canvas: Canvas, canvasWidth: number, canvasHeight: number): boolean {
     return this.isAvailablePoint(
@@ -21,6 +25,7 @@ export class BucketFill {
       return;
     }
 
+    this.positionsOnCanvas = [];
     let xyAdjacentCors = [
       [-1, -1],
       [-1, 0],
@@ -37,8 +42,9 @@ export class BucketFill {
 
     while (queue.length) {
       let { x, y } = queue.shift();
-      
+
       canvas[y - 1][x - 1] = new FilledBlock(this.color);
+      this.positionsOnCanvas.push(new Point(y - 1, x - 1));
 
       for (let i = 0; i < xyAdjacentCors.length; i++) {
         const newX = x + xyAdjacentCors[i][0];
