@@ -21,6 +21,11 @@ import { debounceTime } from 'rxjs/operators';
 export class CanvasComponent implements OnInit {
   core: CanvasCore;
   onFormInputUpdated$ = new Subject();
+
+  get hasNoShapeOrBucket(): boolean {
+    return !this.core.shapes.length && !this.core.buckets.length;
+  }
+
   constructor() {}
 
   ngOnInit(): void {
@@ -43,13 +48,29 @@ export class CanvasComponent implements OnInit {
     }
   }
 
-  createCanvas() {}
+  addLine() {
+    this.core.addShape(new Line(0, 0, 0, 0));
+  }
 
-  addShape() {}
+  addRectangle() {
+    this.core.addShape(new Rectangle(0, 0, 0, 0));
+  }
 
-  deleteShape(shape: Shape, idx: number) {}
+  addBucket() {
+    this.core.addBucket(new BucketFill(0, 0));
+  }
 
-  deleteBucket(bucket: BucketFill, idx: number) {}
+  deleteShape(shapeIdx: number) {
+    this.core.deleteShape(shapeIdx);
+  }
+
+  deleteBucket(bucketIdx: number) {
+    this.core.deleteBucket(bucketIdx);
+  }
+
+  clearAll() {
+    this.core.clear();
+  }
 
   onFormInputUpdated() {
     this.onFormInputUpdated$.next();

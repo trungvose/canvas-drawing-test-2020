@@ -25,9 +25,19 @@ export class CanvasCore {
     this._drawShape(shape);
   }
 
+  deleteShape(shapeIdx: number) {
+    this.shapes = this.shapes.filter((shape, i) => i !== shapeIdx);
+    this.redraw();
+  }
+
   addBucket(bucket: BucketFill) {
     this.buckets.push(bucket);
     this._fillBucket(bucket);
+  }
+
+  deleteBucket(bucketIdx: number) {
+    this.buckets = this.buckets.filter((bucket, i) => i !== bucketIdx);
+    this.redraw();
   }
 
   redraw() {
