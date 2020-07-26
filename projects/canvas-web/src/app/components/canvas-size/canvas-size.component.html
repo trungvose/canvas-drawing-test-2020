@@ -8,20 +8,22 @@
         <nz-form-control nzErrorTip="Canvas width is required">
             <input formControlName="width"
                    nz-input
+                   min="0"
                    type='number'
                    id='CanvasWidth' />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label nzRequired
-                       nzFor='CanvasWidth'>
+                       nzFor='CanvasHeight'>
             Height
         </nz-form-label>
         <nz-form-control nzErrorTip="Canvas height is required">
             <input formControlName="height"
                    nz-input
+                   min="0"
                    type='number'
-                   id='CanvasWidth' />
+                   id='CanvasHeight' />
         </nz-form-control>
     </nz-form-item>
 </form>

@@ -37,6 +37,7 @@ export class CanvasCore {
     );
 
     this.shapes.forEach((shape) => {
+      shape.reCalculation();
       this._drawShape(shape);
     });
 

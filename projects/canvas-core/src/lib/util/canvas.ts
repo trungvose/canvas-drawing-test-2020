@@ -14,4 +14,8 @@ export class CanvasUtil {
       .fill(' ')
       .map(() => this.getEmptyRow(width));
   }
+
+  static isPositive(num: number) {
+    return Number.isInteger(num) && num >= 0;
+  }
 }

@@ -5,7 +5,7 @@ import { Point } from '../point/point';
 export abstract class Shape {
   abstract type: ShapeType;
   abstract positionsOnCanvas: Point[];
-  
+
   constructor(
     public x1: number,
     public y1: number,
@@ -30,6 +30,8 @@ export abstract class Shape {
     canvasWidth: number,
     canvasHeight: number
   );
+
+  abstract reCalculation();
 }
 
 export enum ShapeType {

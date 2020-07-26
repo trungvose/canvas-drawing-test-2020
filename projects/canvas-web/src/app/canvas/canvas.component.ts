@@ -1,7 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { CanvasCore, Line, Rectangle, BucketFill } from 'canvas-core';
+import {
+  CanvasCore,
+  Line,
+  Rectangle,
+  BucketFill,
+  CanvasUtil,
+  Shape,
+} from 'canvas-core';
 import { CanvasSize } from '../interface/canvas-size';
+import { Subject } from 'rxjs';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { debounceTime } from 'rxjs/operators';
 
+@UntilDestroy()
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
@@ -9,6 +20,7 @@ import { CanvasSize } from '../interface/canvas-size';
 })
 export class CanvasComponent implements OnInit {
   core: CanvasCore;
+  onFormInputUpdated$ = new Subject();
   constructor() {}
 
   ngOnInit(): void {
@@ -17,15 +29,29 @@ export class CanvasComponent implements OnInit {
     this.core.addShape(new Line(6, 3, 6, 4));
     this.core.addShape(new Rectangle(14, 1, 18, 3));
     this.core.addBucket(new BucketFill(10, 3));
+
+    this.onFormInputUpdated$
+      .pipe(untilDestroyed(this), debounceTime(100))
+      .subscribe(() => {
+        this.core.redraw();
+      });
   }
 
   canvasSizeChange({ width, height }: CanvasSize) {
-    this.core.updateSize(width, height);
+    if (CanvasUtil.isPositive(width) && CanvasUtil.isPositive(height)) {
+      this.core.updateSize(width, height);
+    }
   }
 
   createCanvas() {}
 
   addShape() {}
 
-  addBucket() {}
+  deleteShape(shape: Shape, idx: number) {}
+
+  deleteBucket(bucket: BucketFill, idx: number) {}
+
+  onFormInputUpdated() {
+    this.onFormInputUpdated$.next();
+  }
 }

@@ -15,6 +15,10 @@ export class Rectangle extends Shape {
     this.setLines();
   }
 
+  reCalculation() {
+    this.setLines();
+  }
+
   setLines() {
     let topHorizontalLine = new Line(
       this.x1,

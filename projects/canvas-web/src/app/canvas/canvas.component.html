@@ -1,38 +1,162 @@
 <h1>Canvas Drawing - Frontend</h1>
 <div nz-row
-     [nzGutter]="[12]">
+     [nzGutter]="[24]">
     <div nz-col
          nzLg="24"
          nzXl="12">
         <h2>Shapes</h2>
+
         <nz-table #shapeTable
                   [nzData]="core?.shapes"
                   [nzShowPagination]="false"
                   [nzNoResult]="emptyShapeTmpl">
             <thead>
                 <tr>
-                    <th>Shape</th>
+                    <th>Shape/Bucket</th>
                     <th>X1</th>
                     <th>Y1</th>
                     <th>X2</th>
                     <th>Y2</th>
                     <th>Label</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let shape of shapeTable.data">
-                    <td>{{ shape.type }}</td>
-                    <td>{{ shape.x1 }}</td>
-                    <td>{{ shape.y1 }}</td>
-                    <td>{{ shape.x2 }}</td>
-                    <td>{{ shape.y2 }}</td>
-                    <td>{{ shape.label }}</td>
+                <tr *ngFor="let shape of shapeTable.data; let idx = index">
+                    <td>
+                        {{ shape.type }}
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control [nzErrorTip]="combineErrorsTmpl">
+                                <input type="number"
+                                       min="0"
+                                       nz-input
+                                       [(ngModel)]="shape.x1"
+                                       (ngModelChange)="onFormInputUpdated()"
+                                       required />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control [nzErrorTip]="combineErrorsTmpl">
+                                <input type="number"
+                                       min="0"
+                                       nz-input
+                                       [(ngModel)]="shape.y1"
+                                       (ngModelChange)="onFormInputUpdated()"
+                                       required />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control [nzErrorTip]="combineErrorsTmpl">
+                                <input type="number"
+                                       min="0"
+                                       nz-input
+                                       [(ngModel)]="shape.x2"
+                                       (ngModelChange)="onFormInputUpdated()"
+                                       required />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control [nzErrorTip]="combineErrorsTmpl">
+                                <input type="number"
+                                       min="0"
+                                       nz-input
+                                       [(ngModel)]="shape.y2"
+                                       (ngModelChange)="onFormInputUpdated()"
+                                       required />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control [nzErrorTip]="combineErrorsTmpl">
+                                <input type="text"
+                                       nz-input
+                                       maxlength="3"
+                                       [(ngModel)]="shape.label"
+                                       (ngModelChange)="onFormInputUpdated()"
+                                       required />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control>
+                                <a nz-popconfirm
+                                   nzPopconfirmTitle="Are you sure you want to delete this shape?"
+                                   (nzOnConfirm)="deleteShape(shape, idx)">Delete</a>
+                            </nz-form-control>
+                        </nz-form-item>
+
+                    </td>
+                </tr>
+                <tr *ngFor="let bucket of core.buckets; let idx = index">
+                    <td>
+                        Bucket
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control [nzErrorTip]="combineErrorsTmpl">
+                                <input type="number"
+                                       min="0"
+                                       nz-input
+                                       [(ngModel)]="bucket.x"
+                                       (ngModelChange)="onFormInputUpdated()"
+                                       required />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control [nzErrorTip]="combineErrorsTmpl">
+                                <input type="number"
+                                       min="0"
+                                       nz-input
+                                       [(ngModel)]="bucket.y"
+                                       (ngModelChange)="onFormInputUpdated()"
+                                       required />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </td>
+
+                    <td colSpan="2">
+
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control [nzErrorTip]="combineErrorsTmpl">
+                                <input type="text"
+                                       nz-input
+                                       maxlength="3"
+                                       [(ngModel)]="bucket.color"
+                                       (ngModelChange)="onFormInputUpdated()"
+                                       required />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </td>
+                    <td>
+                        <nz-form-item>
+                            <nz-form-control>
+                                <a nz-popconfirm
+                                   nzPopconfirmTitle="Are you sure you want to delete this shape?"
+                                   (nzOnConfirm)="deleteBucket(bucket, idx)">Delete</a>
+                            </nz-form-control>
+                        </nz-form-item>
+
+                    </td>
                 </tr>
                 <tr *ngIf="shapeTable.data.length">
                     <td colspan="6">
                         <button nz-button
                                 nzType="primary">
-                            Add Shape
+                            Add
                         </button>
                     </td>
                 </tr>
@@ -43,7 +167,9 @@
          nzLg="24"
          nzXl="12">
         <h2>Canvas</h2>
-        <app-canvas-size [width]="core.canvasWidth" [height]="core.canvasHeight" (sizeChange)="canvasSizeChange($event)"></app-canvas-size>
+        <app-canvas-size [width]="core.canvasWidth"
+                         [height]="core.canvasHeight"
+                         (sizeChange)="canvasSizeChange($event)"></app-canvas-size>
         <app-canvas-board [canvas]="core.canvas"></app-canvas-board>
     </div>
 </div>
@@ -53,4 +179,9 @@
             nzType="primary">
         Add Shape
     </button>
+</ng-template>
+
+<ng-template #combineErrorsTmpl
+             let-control>
+    <ng-container *ngIf="control.hasError('required')">Required</ng-container>
 </ng-template>

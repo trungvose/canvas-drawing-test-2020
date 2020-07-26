@@ -14,6 +14,10 @@ export class Line extends Shape {
     super(x1, y1, x2, y2, label);
     this.type = ShapeType.Line;
     this.positionsOnCanvas = [];
+    this.reCalculation();
+  }
+
+  reCalculation() {
     this.startX = Math.min(this.x1, this.x2);
     this.startY = Math.min(this.y1, this.y2);
     this.setDirection();

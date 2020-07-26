@@ -1,5 +1,6 @@
 <div class="canvas-board">
-    <div class="canvas-row">
+    <div class="canvas-row"
+         *ngIf="canvas?.length">
         <div class="canvas-block"
              *ngFor='let col of canvasHeader; let idx = index'>
             {{ idx  }}
