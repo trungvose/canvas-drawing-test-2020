@@ -1,18 +1,18 @@
 import { CanvasUtil } from '../util/canvas';
 import { Canvas } from '../core/canvas';
+import { Point } from '../point/point';
 
 export abstract class Shape {
   abstract type: ShapeType;
-
+  abstract positionsOnCanvas: Point[];
+  
   constructor(
     public x1: number,
     public y1: number,
     public x2: number,
     public y2: number,
     public label: string
-  ) {
-    
-  }
+  ) {}
 
   protected isInsideCanvas(canvasWidth: number, canvasHeight: number) {
     return (

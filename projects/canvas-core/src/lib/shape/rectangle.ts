@@ -1,14 +1,17 @@
 import { Shape, ShapeType } from './shape';
 import { Canvas } from '../core/canvas';
 import { Line } from './line';
+import { Point } from '../point/point';
 
 export class Rectangle extends Shape {
+  positionsOnCanvas: Point[];
   type: ShapeType;
   lines: Line[];
 
   constructor(x1: number, y1: number, x2: number, y2: number, label = 'x') {
     super(x1, y1, x2, y2, label);
     this.type = ShapeType.Rectangle;
+    this.positionsOnCanvas = [];
     this.setLines();
   }
 
@@ -27,7 +30,7 @@ export class Rectangle extends Shape {
   }
 
   isValid(canvasWidth: number, canvasHeight: number): boolean {
-    return this.isInsideCanvas(canvasWidth, canvasHeight);
+    return this.lines.every((line) => line.isValid(canvasWidth, canvasHeight));
   }
 
   drawToCanvas(canvas: Canvas, canvasWidth: number, canvasHeight: number) {
@@ -36,6 +39,7 @@ export class Rectangle extends Shape {
     }
     this.lines.forEach((line) => {
       line.drawToCanvas(canvas, canvasWidth, canvasHeight);
+      this.positionsOnCanvas.push(...line.positionsOnCanvas);
     });
   }
 }

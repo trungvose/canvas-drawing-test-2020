@@ -1,6 +1,6 @@
 import { CanvasUtil } from '../util/canvas';
 import { Canvas } from '../core/canvas';
-import { Point } from './point';
+import { Point } from '../point/point';
 
 export class BucketFill {
   constructor(public x: number, public y: number, public color: string = 'o') {}
@@ -20,7 +20,7 @@ export class BucketFill {
       return;
     }
 
-    let xyCors = [
+    let xyAdjacentCors = [
       [-1, -1],
       [-1, 0],
       [-1, 1],
@@ -36,9 +36,9 @@ export class BucketFill {
       let { x, y } = queue.shift();
       canvas[y - 1][x - 1] = this.color;
 
-      for (let i = 0; i < xyCors.length; i++) {
-        const newX = x + xyCors[i][0];
-        const newY = y + xyCors[i][1];
+      for (let i = 0; i < xyAdjacentCors.length; i++) {
+        const newX = x + xyAdjacentCors[i][0];
+        const newY = y + xyAdjacentCors[i][1];
         if (
           this.isAvailablePoint(newX, newY, canvas, canvasWidth, canvasHeight)
         ) {

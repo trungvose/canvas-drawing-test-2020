@@ -25,6 +25,11 @@ export class CanvasCore {
   }
 
   redraw() {
+    this.canvas = CanvasUtil.getEmptyCanvas(
+      this.canvasWidth,
+      this.canvasHeight
+    );
+
     this.shapes.forEach((shape) => {
       this._drawShape(shape);
     });
@@ -32,6 +37,15 @@ export class CanvasCore {
     this.buckets.forEach((bucket) => {
       this._fillBucket(bucket);
     });
+  }
+
+  clear() {
+    this.shapes = [];
+    this.buckets = [];
+    this.canvas = CanvasUtil.getEmptyCanvas(
+      this.canvasWidth,
+      this.canvasHeight
+    );
   }
 
   private _fillBucket(bucket: BucketFill) {

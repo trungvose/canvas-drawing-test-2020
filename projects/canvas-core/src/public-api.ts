@@ -2,6 +2,7 @@
  * Public API Surface of canvas-core
  */
 
+export * from './lib/point/point';
 export * from './lib/shape/shape';
 export * from './lib/shape/line';
 export * from './lib/shape/rectangle';
