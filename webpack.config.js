@@ -2,6 +2,7 @@ const path = require("path");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
+  target: "node",
   entry: "./projects/canvas-command-line/index.ts",
   module: {
     rules: [
