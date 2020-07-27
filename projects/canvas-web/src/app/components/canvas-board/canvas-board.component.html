@@ -2,8 +2,8 @@
     <div class="canvas-row"
          *ngIf="canvas?.length">
         <div class="canvas-block"
-             *ngFor='let col of canvasHeader; let idx = index'>
-            {{ idx }}
+             *ngFor='let col of canvasHeader; let rowIdx = index'>
+            {{ rowIdx }}
         </div>
     </div>
     <div class="canvas-row"
@@ -16,7 +16,11 @@
              nz-tooltip
              [nzTooltipTitle]="getBlockTooltip(j, i)"
              [style.background]="block.backgroundColor"
-             [style.color]="block.color">
+             [style.color]="block.color"
+             nz-popconfirm
+             [nzCondition]="isFilledBlock(i, j)"
+             [nzPopconfirmTitle]="getPopupTitle(i, j)"
+             (nzOnConfirm)="addBucket(i, j)">
             {{ block.label }}
         </div>
     </div>

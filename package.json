@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "prestart": "ng build canvas-core",
+    "watch": "ng build canvas-core --watch",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",

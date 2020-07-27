@@ -57,8 +57,8 @@ export class CanvasComponent implements OnInit {
     this.core.addShape(new Rectangle(0, 0, 0, 0));
   }
 
-  addBucket() {
-    this.core.addBucket(new BucketFill(0, 0));
+  addBucket(bucket = new BucketFill(0, 0)) {
+    this.core.addBucket(bucket);
   }
 
   deleteShape(shapeIdx: number) {
