@@ -24,7 +24,7 @@ function processInput(str: string) {
   let [command, ...coordinatesInString] = chars;
   let coors = coordinatesInString.map(Number);
   let hasAllNumberEntered = command === Command.Line || command === Command.Rectangle || command === Command.Canvas
-  if (hasAllNumberEntered && ! CommandManager.isValidCoordinates(coors)) {
+  if (hasAllNumberEntered && !CommandManager.isValidCoordinates(coors)) {
     CommandManager.reEnterMessage();
     return;
   }
@@ -52,6 +52,7 @@ function processInput(str: string) {
       break;
 
     default:
+      CommandManager.reEnterMessage();
       break;
   }
 }
