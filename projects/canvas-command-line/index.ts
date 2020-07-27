@@ -1,4 +1,5 @@
-import { CanvasCore, Line } from '../../dist/canvas-core/canvas-core';
+import { CanvasCore, Line } from 'canvas-core';
 
-var canvas = new CanvasCore(20, 4);
-canvas.addShape(new Line(1, 2, 6, 2));
+var core = new CanvasCore(20, 4);
+core.addShape(new Line(1, 2, 6, 2));
+console.table(core.canvas);
