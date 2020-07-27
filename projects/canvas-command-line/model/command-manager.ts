@@ -28,7 +28,7 @@ export class CommandManager {
         let [xStr, yStr, color] = inputs;
         let x = Number(xStr);
         let y = Number(yStr);
-        let isCoorsValid = [x, y].every(Number.isInteger);
+        let isCoorsValid = this.isValidCoordinates([x, y])
         if (core && isCoorsValid) {
             core.addBucket(new BucketFill(x, y, color));
             this.renderCanvas(core);
@@ -46,6 +46,10 @@ export class CommandManager {
             })
             console.log(border);
         }
+    }
+
+    static isValidCoordinates(coors: number[]) {
+        return coors.every(x => Number.isInteger(x) && x >= 0)
     }
 
     static reEnterMessage() {

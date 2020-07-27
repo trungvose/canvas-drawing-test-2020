@@ -24,7 +24,7 @@ function processInput(str: string) {
   let [command, ...coordinatesInString] = chars;
   let coors = coordinatesInString.map(Number);
   let hasAllNumberEntered = command === Command.Line || command === Command.Rectangle || command === Command.Canvas
-  if (hasAllNumberEntered && !isValidCoordinates(coors)) {
+  if (hasAllNumberEntered && ! CommandManager.isValidCoordinates(coors)) {
     CommandManager.reEnterMessage();
     return;
   }
@@ -64,7 +64,4 @@ function createCanvas(coors: number[]) {
   } else {
     CommandManager.reEnterMessage()
   }
-}
-function isValidCoordinates(coors: number[]) {
-  return coors.every(Number.isInteger)
 }
