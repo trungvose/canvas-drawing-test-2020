@@ -32,7 +32,8 @@
 
         <nz-table nzSize="small"
                   [nzShowPagination]="false"
-                  [nzNoResult]="emptyShapeTmpl">
+                  [nzNoResult]="emptyShapeTmpl"
+                  [nzScroll]="{ x: '550px' }">
             <thead>
                 <tr>
                     <th nzWidth="20%">Item</th>
@@ -41,7 +42,7 @@
                     <th>X2</th>
                     <th>Y2</th>
                     <th>Label</th>
-                    <th>Action</th>
+                    <th nzRight>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -121,7 +122,7 @@
                             </nz-form-control>
                         </nz-form-item>
                     </td>
-                    <td>
+                    <td nzRight>
                         <nz-form-item>
                             <nz-form-control>
                                 <a nz-popconfirm
@@ -184,7 +185,7 @@
                             </nz-form-control>
                         </nz-form-item>
                     </td>
-                    <td>
+                    <td nzRight>
                         <nz-form-item>
                             <nz-form-control>
                                 <a nz-popconfirm

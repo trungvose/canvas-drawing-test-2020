@@ -1,5 +1,8 @@
 nz-form-control {
   padding-left: 0 !important;
+  input {
+    min-width: 60px;
+  }
 }
 
 .table-action {
@@ -15,6 +18,12 @@ nz-form-control {
   cursor: pointer;
 }
 
-::ng-deep tr.ant-table-placeholder td {
-  border-bottom: 0;
+::ng-deep {
+  .ant-table-body{
+    overflow-x: auto !important;
+  }
+
+  tr.ant-table-placeholder td {
+    border-bottom: 0;
+  }
 }
