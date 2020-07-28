@@ -62,10 +62,10 @@ export class Rectangle extends Shape {
   }
 
   drawToCanvas(canvas: Canvas, canvasWidth: number, canvasHeight: number) {
+    this.positionsOnCanvas = [];
     if (!this.isValid(canvasWidth, canvasHeight)) {
       return;
     }
-    this.positionsOnCanvas = [];
     this.lines.forEach((line) => {
       line.drawToCanvas(canvas, canvasWidth, canvasHeight);
       this.positionsOnCanvas.push(...line.positionsOnCanvas);

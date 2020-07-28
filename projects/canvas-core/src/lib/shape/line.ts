@@ -33,10 +33,10 @@ export class Line extends Shape {
   }
 
   drawToCanvas(canvas: Canvas, canvasWidth: number, canvasHeight: number) {
+    this.positionsOnCanvas = [];
     if (!this.isValid(canvasWidth, canvasHeight)) {
       return;
     }
-    this.positionsOnCanvas = [];
     let arrIdxRow = this.startY - 1;
     let arrIdxCol = this.startX - 1;
 

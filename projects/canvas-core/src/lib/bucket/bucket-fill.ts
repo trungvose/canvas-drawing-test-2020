@@ -21,11 +21,11 @@ export class BucketFill {
   }
 
   fill(canvas: Canvas, canvasWidth: number, canvasHeight: number) {
+    this.positionsOnCanvas = [];
     if (!this.isValid(canvas, canvasWidth, canvasHeight)) {
       return;
     }
 
-    this.positionsOnCanvas = [];
     let xyAdjacentCors = [
       [-1, -1],
       [-1, 0],
