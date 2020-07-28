@@ -24,6 +24,7 @@ export class CommandManager {
     static createBucket(core: CanvasCore, inputs: string[]) {
         if (inputs.length !== 3) {
             this.reEnterMessage();
+            return;
         }
         let [xStr, yStr, color] = inputs;
         let x = Number(xStr);
