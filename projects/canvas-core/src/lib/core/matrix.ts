@@ -1,3 +1,3 @@
 import { Block } from '../block/block';
 
-export type Canvas = Block[][];
+export type Matrix = Block[][];

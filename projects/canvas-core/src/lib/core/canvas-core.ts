@@ -1,19 +1,19 @@
 import { Shape } from '../shape/shape';
 import { CanvasUtil } from '../util/canvas';
-import { Canvas } from './canvas';
+import { Matrix } from './matrix';
 import { BucketFill } from '../bucket/bucket-fill';
 import { BlockColor } from '../util/color';
 import { Point } from '../point/point';
 
 export class CanvasCore {
-  canvas: Canvas;
+  matrix: Matrix;
   shapes: Shape[];
   buckets: BucketFill[];
 
   constructor(public canvasWidth: number, public canvasHeight: number) {
     this.shapes = [];
     this.buckets = [];
-    this.canvas = CanvasUtil.getEmptyCanvas(canvasWidth, canvasHeight);
+    this.matrix = CanvasUtil.getEmptyCanvas(canvasWidth, canvasHeight);
   }
 
   updateSize(width: number, height: number) {
@@ -48,14 +48,14 @@ export class CanvasCore {
     color: BlockColor
   ) {
     points.forEach(({ x, y }) => {
-      let block = this.canvas[x][y];
+      let block = this.matrix[x][y];
       block.backgroundColor = background;
       block.color = color;
     });
   }
 
   redraw() {
-    this.canvas = CanvasUtil.getEmptyCanvas(
+    this.matrix = CanvasUtil.getEmptyCanvas(
       this.canvasWidth,
       this.canvasHeight
     );
@@ -73,17 +73,17 @@ export class CanvasCore {
   clear() {
     this.shapes = [];
     this.buckets = [];
-    this.canvas = CanvasUtil.getEmptyCanvas(
+    this.matrix = CanvasUtil.getEmptyCanvas(
       this.canvasWidth,
       this.canvasHeight
     );
   }
 
   private _fillBucket(bucket: BucketFill) {
-    bucket.fill(this.canvas, this.canvasWidth, this.canvasHeight);
+    bucket.fill(this.matrix, this.canvasWidth, this.canvasHeight);
   }
 
   private _drawShape(shape: Shape) {
-    shape.drawToCanvas(this.canvas, this.canvasWidth, this.canvasHeight);
+    shape.drawToCanvas(this.matrix, this.canvasWidth, this.canvasHeight);
   }
 }

@@ -1,5 +1,5 @@
 import { CanvasUtil } from '../util/canvas';
-import { Canvas } from '../core/canvas';
+import { Matrix } from '../core/matrix';
 import { Point } from '../point/point';
 import { FilledBlock } from '../block/filled-block';
 
@@ -10,7 +10,7 @@ export class BucketFill {
     this.positionsOnCanvas = [];
   }
 
-  isValid(canvas: Canvas, canvasWidth: number, canvasHeight: number): boolean {
+  isValid(canvas: Matrix, canvasWidth: number, canvasHeight: number): boolean {
     return this.isAvailablePoint(
       this.x,
       this.y,
@@ -20,9 +20,9 @@ export class BucketFill {
     );
   }
 
-  fill(canvas: Canvas, canvasWidth: number, canvasHeight: number) {
+  fill(matrix: Matrix, canvasWidth: number, canvasHeight: number) {
     this.positionsOnCanvas = [];
-    if (!this.isValid(canvas, canvasWidth, canvasHeight)) {
+    if (!this.isValid(matrix, canvasWidth, canvasHeight)) {
       return;
     }
 
@@ -43,7 +43,7 @@ export class BucketFill {
     while (queue.length) {
       let { x, y } = queue.shift();
 
-      canvas[y - 1][x - 1] = new FilledBlock(this.color);
+      matrix[y - 1][x - 1] = new FilledBlock(this.color);
       this.positionsOnCanvas.push(new Point(y - 1, x - 1));
 
       for (let i = 0; i < xyAdjacentCors.length; i++) {
@@ -54,7 +54,7 @@ export class BucketFill {
         );
         if (
           !isQueueHasPoint &&
-          this.isAvailablePoint(newX, newY, canvas, canvasWidth, canvasHeight)
+          this.isAvailablePoint(newX, newY, matrix, canvasWidth, canvasHeight)
         ) {
           queue.push(new Point(newX, newY));
         }
@@ -65,7 +65,7 @@ export class BucketFill {
   isAvailablePoint(
     x: number,
     y: number,
-    canvas: Canvas,
+    canvas: Matrix,
     canvasWidth: number,
     canvasHeight: number
   ) {

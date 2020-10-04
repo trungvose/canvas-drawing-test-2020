@@ -1,5 +1,5 @@
 import { CanvasUtil } from '../util/canvas';
-import { Canvas } from '../core/canvas';
+import { Matrix } from '../core/matrix';
 import { Point } from '../point/point';
 
 export abstract class Shape {
@@ -26,7 +26,7 @@ export abstract class Shape {
   abstract isValid(canvasWidth: number, canvasHeight: number): boolean;
 
   abstract drawToCanvas(
-    canvas: Canvas,
+    matrix: Matrix,
     canvasWidth: number,
     canvasHeight: number
   );

@@ -205,7 +205,7 @@
         <app-canvas-size [width]="core.canvasWidth"
                          [height]="core.canvasHeight"
                          (sizeChange)="canvasSizeChange($event)"></app-canvas-size>
-        <app-canvas-board [canvas]="core.canvas"
+        <app-canvas-board [matrix]="core.matrix"
                           (onAddBucket)="addBucket($event)">
         </app-canvas-board>
     </div>

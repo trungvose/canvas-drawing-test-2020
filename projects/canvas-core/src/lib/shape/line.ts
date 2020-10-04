@@ -1,5 +1,5 @@
 import { Shape, ShapeType } from './shape';
-import { Canvas } from '../core/canvas';
+import { Matrix } from '../core/matrix';
 import { Point } from '../point/point';
 import { FilledBlock } from '../block/filled-block';
 
@@ -32,7 +32,7 @@ export class Line extends Shape {
     );
   }
 
-  drawToCanvas(canvas: Canvas, canvasWidth: number, canvasHeight: number) {
+  drawToCanvas(matrix: Matrix, canvasWidth: number, canvasHeight: number) {
     this.positionsOnCanvas = [];
     if (!this.isValid(canvasWidth, canvasHeight)) {
       return;
@@ -42,12 +42,12 @@ export class Line extends Shape {
 
     if (this.direction === LineDirection.Horizontal) {
       for (let i = 0; i < this.length; i++) {
-        canvas[arrIdxRow][arrIdxCol + i] = new FilledBlock(this.label);
+        matrix[arrIdxRow][arrIdxCol + i] = new FilledBlock(this.label);
         this.positionsOnCanvas.push(new Point(arrIdxRow, arrIdxCol + i));
       }
     } else if (this.direction === LineDirection.Vertical) {
       for (let i = 0; i < this.length; i++) {
-        canvas[arrIdxRow + i][arrIdxCol] = new FilledBlock(this.label);
+        matrix[arrIdxRow + i][arrIdxCol] = new FilledBlock(this.label);
         this.positionsOnCanvas.push(new Point(arrIdxRow + i, arrIdxCol));
       }
     }

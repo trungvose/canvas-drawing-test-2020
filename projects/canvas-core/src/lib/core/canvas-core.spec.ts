@@ -1,7 +1,6 @@
 import { CanvasCore } from './canvas-core';
 import { Line } from '../shape/line';
-import { Shape } from '../shape/shape';
-import { Canvas } from './canvas';
+import { Matrix } from './matrix';
 import { Rectangle } from '../shape/rectangle';
 import { BucketFill } from '../bucket/bucket-fill';
 import { Point } from '../point/point';
@@ -13,8 +12,8 @@ describe('Canvas Core', () => {
   });
 
   it('should instantiate with row and column', () => {
-    expect(canvasCore.canvas.length).toEqual(4);
-    canvasCore.canvas.forEach((row) => {
+    expect(canvasCore.matrix.length).toEqual(4);
+    canvasCore.matrix.forEach((row) => {
       expect(row.length).toEqual(20);
     });
   });
@@ -37,7 +36,7 @@ describe('Canvas Core', () => {
     canvasCore.addShape(line);
     expect(line.positionsOnCanvas.length).toEqual(6);
     expect(
-      assertCanvasAfterDrawing(line.positionsOnCanvas, canvasCore.canvas)
+      assertCanvasAfterDrawing(line.positionsOnCanvas, canvasCore.matrix)
     ).toEqual(true);
   });
 
@@ -47,7 +46,7 @@ describe('Canvas Core', () => {
     canvasCore.addShape(rectangle);
     expect(rectangle.positionsOnCanvas.length).toEqual(16);
     expect(
-      assertCanvasAfterDrawing(rectangle.positionsOnCanvas, canvasCore.canvas)
+      assertCanvasAfterDrawing(rectangle.positionsOnCanvas, canvasCore.matrix)
     ).toEqual(true);
   });
 
@@ -67,7 +66,7 @@ describe('Canvas Core', () => {
     expect(bucket.positionsOnCanvas.length).toEqual(80);
 
     expect(
-      assertCanvasAfterDrawing(bucket.positionsOnCanvas, canvasCore.canvas)
+      assertCanvasAfterDrawing(bucket.positionsOnCanvas, canvasCore.matrix)
     ).toEqual(true);
   });
 
@@ -81,7 +80,7 @@ describe('Canvas Core', () => {
 
     expect(bucket.positionsOnCanvas.length).toEqual(47);
     expect(
-      assertCanvasAfterDrawing(bucket.positionsOnCanvas, canvasCore.canvas)
+      assertCanvasAfterDrawing(bucket.positionsOnCanvas, canvasCore.matrix)
     ).toEqual(true);
   });
 
@@ -97,8 +96,8 @@ describe('Canvas Core', () => {
 
   const assertCanvasAfterDrawing = (
     points: Point[],
-    canvas: Canvas
+    matrix: Matrix
   ): boolean => {
-    return points.every(({ x, y }) => canvas[x][y].isFilled);
+    return points.every(({ x, y }) => matrix[x][y].isFilled);
   };
 });

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Canvas, BucketFill } from 'canvas-core';
+import { Matrix, BucketFill } from 'canvas-core';
 
 @Component({
   selector: 'app-canvas-board',
@@ -7,11 +7,11 @@ import { Canvas, BucketFill } from 'canvas-core';
   styleUrls: ['./canvas-board.component.scss'],
 })
 export class CanvasBoardComponent implements OnInit {
-  @Input() canvas: Canvas;
+  @Input() matrix: Matrix;
   @Output() onAddBucket = new EventEmitter<BucketFill>();
 
   get canvasHeader() {
-    let length = this.canvas[0]?.length || 0;
+    let length = this.matrix[0]?.length || 0;
     return Array(length + 1).fill(0);
   }
 
@@ -28,7 +28,7 @@ export class CanvasBoardComponent implements OnInit {
   }
 
   isFilledBlock(i: number, j: number) {
-    return this.canvas[i][j].isFilled;
+    return this.matrix[i][j].isFilled;
   }
 
   getPopupTitle(rowIdx: number, colIdx: number) {

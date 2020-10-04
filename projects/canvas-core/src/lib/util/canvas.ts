@@ -1,4 +1,4 @@
-import { Canvas } from '../core/canvas';
+import { Matrix } from '../core/matrix';
 import { Block } from '../block/block';
 import { EmptyBlock } from '../block/empty-block';
 
@@ -11,7 +11,7 @@ export class CanvasUtil {
     return new Array(width).fill('').map(() => new EmptyBlock());
   }
 
-  static getEmptyCanvas(width: number, height: number): Canvas {
+  static getEmptyCanvas(width: number, height: number): Matrix {
     return Array(height)
       .fill('')
       .map(() => this.getEmptyRow(width));

@@ -1,13 +1,13 @@
 <div class="canvas-board">
     <div class="canvas-row"
-         *ngIf="canvas?.length">
+         *ngIf="matrix?.length">
         <div class="canvas-block"
              *ngFor='let col of canvasHeader; let rowIdx = index'>
             {{ rowIdx }}
         </div>
     </div>
     <div class="canvas-row"
-         *ngFor='let row of canvas; let i = index'>
+         *ngFor='let row of matrix; let i = index'>
         <div class="canvas-block">
             {{ i + 1 }}
         </div>

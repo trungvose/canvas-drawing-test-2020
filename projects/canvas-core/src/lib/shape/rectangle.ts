@@ -1,5 +1,5 @@
 import { Shape, ShapeType } from './shape';
-import { Canvas } from '../core/canvas';
+import { Matrix } from '../core/matrix';
 import { Line } from './line';
 import { Point } from '../point/point';
 
@@ -61,13 +61,13 @@ export class Rectangle extends Shape {
     return this.lines.every((line) => line.isValid(canvasWidth, canvasHeight));
   }
 
-  drawToCanvas(canvas: Canvas, canvasWidth: number, canvasHeight: number) {
+  drawToCanvas(matrix: Matrix, canvasWidth: number, canvasHeight: number) {
     this.positionsOnCanvas = [];
     if (!this.isValid(canvasWidth, canvasHeight)) {
       return;
     }
     this.lines.forEach((line) => {
-      line.drawToCanvas(canvas, canvasWidth, canvasHeight);
+      line.drawToCanvas(matrix, canvasWidth, canvasHeight);
       this.positionsOnCanvas.push(...line.positionsOnCanvas);
     });
   }
